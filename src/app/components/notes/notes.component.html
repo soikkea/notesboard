@@ -1,0 +1,9 @@
+<h2>Notes</h2>
+<ul>
+    <li *ngFor="let note of notes">
+        <app-note-detail [note]="note"></app-note-detail>
+    </li>
+</ul>
+<div>
+    {{notes.length}} notes in total.
+</div>
