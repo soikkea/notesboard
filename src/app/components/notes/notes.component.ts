@@ -9,6 +9,8 @@ import { NoteService } from '../../services/note.service';
 })
 export class NotesComponent implements OnInit {
   notes: Note[];
+  showAll = true;
+  notesToShow: Note[];
 
   constructor(private noteService: NoteService) { }
 
@@ -18,7 +20,9 @@ export class NotesComponent implements OnInit {
 
   getNotes(): void {
     this.noteService.getNotes()
-      .subscribe(notes => this.notes = notes);
+      .subscribe(notes => {
+        this.updateNotes(notes);
+      });
   }
 
   add(contents: string): void {
@@ -32,6 +36,19 @@ export class NotesComponent implements OnInit {
     };
     console.log('Adding a new Note!');
     this.noteService.addNote(newNote)
-      .subscribe(note => {this.notes.push(note)})
-    };
+      .subscribe(note => {
+        const newNotes = this.notes.concat(note);
+        this.updateNotes(newNotes);
+      })
+  };
+
+  setShowAll(value: boolean): void {
+    this.showAll = value;
+    this.notesToShow = this.showAll ? this.notes : this.notes.filter(note => note.important);
+  }
+
+  updateNotes(notes: Note[]): void {
+    this.notes = notes;
+    this.setShowAll(this.showAll);
+  }
 }

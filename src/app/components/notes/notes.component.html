@@ -1,6 +1,11 @@
 <h2>Notes</h2>
+<div>
+    <button (click)="setShowAll(!showAll)">
+        show {{showAll ? 'important' : 'all'}}
+    </button>
+</div>
 <ul>
-    <li *ngFor="let note of notes">
+    <li *ngFor="let note of notesToShow">
         <app-note-detail [note]="note"></app-note-detail>
     </li>
 </ul>
