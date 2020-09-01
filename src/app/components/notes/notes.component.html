@@ -5,5 +5,13 @@
     </li>
 </ul>
 <div>
+    <label>New note:
+        <input #newNoteContents />
+    </label>
+    <button (click)="add(newNoteContents.value); newNoteContents.value=''">
+        add
+    </button>
+</div>
+<div>
     {{notes.length}} notes in total.
 </div>
