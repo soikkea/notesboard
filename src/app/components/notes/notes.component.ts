@@ -11,6 +11,7 @@ export class NotesComponent implements OnInit {
   notes: Note[];
   showAll = true;
   notesToShow: Note[];
+  searchString = '';
 
   constructor(private noteService: NoteService) { }
 
@@ -44,11 +45,27 @@ export class NotesComponent implements OnInit {
 
   setShowAll(value: boolean): void {
     this.showAll = value;
-    this.notesToShow = this.showAll ? this.notes : this.notes.filter(note => note.important);
+    this.filterNotes();
   }
 
   updateNotes(notes: Note[]): void {
     this.notes = notes;
-    this.setShowAll(this.showAll);
+    this.filterNotes();
+  }
+
+  setSearchString(value: string): void {
+    this.searchString = value;
+    this.filterNotes();
+  }
+
+  filterNotes(): void {
+    const importantFilter = this.showAll ?
+      (_: Note) => true :
+      (note: Note) => note.important;
+    const searchFilter = this.searchString ?
+      (note: Note) => note.content.toLowerCase().includes(this.searchString) :
+      (_: Note) => true;
+    
+      this.notesToShow = this.notes.filter(note => importantFilter(note) && searchFilter(note));
   }
 }

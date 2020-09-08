@@ -4,6 +4,11 @@
         show {{showAll ? 'important' : 'all'}}
     </button>
 </div>
+<div>
+    <label>Search:
+        <input #searchFilterBox (input)="setSearchString(searchFilterBox.value)" />
+    </label>
+</div>
 <ul>
     <li *ngFor="let note of notesToShow">
         <app-note-detail [note]="note"></app-note-detail>
