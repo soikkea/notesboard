@@ -39,4 +39,10 @@ export class NoteService {
       catchError(this.handleError<Note>('addNote'))
     );
   }
+
+  updateNote(note: Note): Observable<any> {
+    return this.http.put(this.notesUrl, note, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updateNote'))
+    );
+  }
 }

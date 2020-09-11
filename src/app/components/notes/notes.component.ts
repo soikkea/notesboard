@@ -43,6 +43,14 @@ export class NotesComponent implements OnInit {
       })
   };
 
+  update(updatedNote: Note): void {
+    this.noteService.updateNote(updatedNote)
+      .subscribe(_ => {
+        const newNotes = this.notes.map(note => note.id !== updatedNote.id ? note : updatedNote);
+        this.updateNotes(newNotes);
+      })
+  }
+
   setShowAll(value: boolean): void {
     this.showAll = value;
     this.filterNotes();

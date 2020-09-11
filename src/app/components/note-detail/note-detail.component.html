@@ -1,1 +1,4 @@
 {{note.content}}
+<button (click)="setNoteImportance(!note.important)">
+    set as {{note.important ? 'unimportant' : 'important'}}
+</button>
