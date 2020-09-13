@@ -10,6 +10,7 @@ export class NoteDetailComponent implements OnInit {
 
   @Input() note: Note;
   @Output() noteChanged = new EventEmitter<Note>();
+  @Output() noteDeletd = new EventEmitter<number>();
 
   constructor() { }
 
@@ -19,6 +20,10 @@ export class NoteDetailComponent implements OnInit {
   setNoteImportance(value: boolean): void {
     this.note.important = value;
     this.noteChanged.emit(this.note);
+  }
+
+  deleteNote(): void {
+    this.noteDeletd.emit(this.note.id);
   }
 
 }

@@ -51,6 +51,14 @@ export class NotesComponent implements OnInit {
       })
   }
 
+  deleteNote(id: number): void {
+    this.noteService.deleteNote(id)
+      .subscribe(_ => {
+        const notes = this.notes.filter(note => note.id !== id);
+        this.updateNotes(notes);
+      })
+  }
+
   setShowAll(value: boolean): void {
     this.showAll = value;
     this.filterNotes();

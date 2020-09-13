@@ -23,6 +23,7 @@ export class NoteService {
   getNotes(): Observable<Note[]> {
     return this.http.get<Note[]>(this.notesUrl)
       .pipe(
+        tap(_ => this.log('fetched notes')),
         catchError(this.handleError<Note[]>('getNotes', []))
       );
   }
@@ -44,5 +45,18 @@ export class NoteService {
     return this.http.put(this.notesUrl, note, this.httpOptions).pipe(
       catchError(this.handleError<any>('updateNote'))
     );
+  }
+
+  deleteNote(note: Note | number): Observable<Note> {
+    const id = typeof note === 'number' ? note : note.id;
+    const url = `${this.notesUrl}/${id}`;
+
+    return this.http.delete<Note>(url, this.httpOptions).pipe(
+      catchError(this.handleError<Note>('deleteNote'))
+    );
+  }
+
+  private log(message: string) {
+    console.log(`NoteService: ${message}`);
   }
 }
