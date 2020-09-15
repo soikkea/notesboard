@@ -5,9 +5,13 @@
     </button>
 </div>
 <div>
-    <label>Search:
-        <input #searchFilterBox (input)="setSearchString(searchFilterBox.value)" />
-    </label>
+    <mat-form-field>
+        <mat-label>Search</mat-label>
+        <input matInput type="text" #searchFilterBox name="searchFilterBox" (input)="setSearchString(searchFilterBox.value)" />
+        <button mat-button *ngIf="searchFilterBox.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchFilterBox.value = ''; setSearchString('')">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
 </div>
 <ul>
     <li *ngFor="let note of notesToShow">
