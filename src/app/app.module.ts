@@ -5,6 +5,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 
+import {MatToolbarModule} from '@angular/material/toolbar';
+
 import { AppComponent } from './app.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
@@ -25,7 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       InMemoryDataService, { dataEncapsulation: false}
     ),
 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
