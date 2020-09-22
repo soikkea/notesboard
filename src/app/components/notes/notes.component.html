@@ -19,9 +19,10 @@
     </li>
 </ul>
 <div>
-    <label>New note:
-        <input #newNoteContents />
-    </label>
+    <mat-form-field>
+        <mat-label>New note:</mat-label>
+        <textarea matInput #newNoteContents></textarea>
+    </mat-form-field>
     <button (click)="add(newNoteContents.value); newNoteContents.value=''">
         add
     </button>
