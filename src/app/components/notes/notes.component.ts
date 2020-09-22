@@ -32,7 +32,7 @@ export class NotesComponent implements OnInit {
     const newNote: Note = {
       content: contents,
       date: new Date().toISOString(),
-      important: Math.random() > 0.5,
+      important: false,
       id: this.notes.length + 1
     };
     console.log('Adding a new Note!');

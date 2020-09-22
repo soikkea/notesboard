@@ -1,7 +1,11 @@
-{{note.content}}
-<button (click)="setNoteImportance(!note.important)">
-    set as {{note.important ? 'unimportant' : 'important'}}
-</button>
-<button (click)="deleteNote()">
-    Delete
-</button>
+<div>
+    <div class="text-style">
+        {{note.content}}
+    </div>
+    <button (click)="setNoteImportance(!note.important)">
+        set as {{note.important ? 'unimportant' : 'important'}}
+    </button>
+    <button (click)="deleteNote()">
+        Delete
+    </button>
+</div>
