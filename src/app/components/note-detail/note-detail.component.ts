@@ -12,6 +12,8 @@ export class NoteDetailComponent implements OnInit {
   @Output() noteChanged = new EventEmitter<Note>();
   @Output() noteDeletd = new EventEmitter<number>();
 
+  public editMode = false;
+
   constructor() { }
 
   ngOnInit(): void {
@@ -24,6 +26,15 @@ export class NoteDetailComponent implements OnInit {
 
   deleteNote(): void {
     this.noteDeletd.emit(this.note.id);
+  }
+
+  editNote(): void {
+    this.editMode = true;
+  }
+
+  acceptEdit(): void {
+    this.editMode = false;
+    this.noteChanged.emit(this.note);
   }
 
 }
