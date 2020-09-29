@@ -20,9 +20,9 @@
         </div>
     </div>
     <div>
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="full-width">
             <mat-label>New note:</mat-label>
-            <textarea matInput #newNoteContents></textarea>
+            <textarea matInput #newNoteContents rows="10"></textarea>
         </mat-form-field>
         <button (click)="add(newNoteContents.value); newNoteContents.value=''">
             add
