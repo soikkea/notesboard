@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, OnInit } from '@angular/core';
 import { Note } from '../../models/note';
 import { NoteService } from '../../services/note.service';
@@ -83,5 +84,9 @@ export class NotesComponent implements OnInit {
       (_: Note) => true;
     
       this.notesToShow = this.notes.filter(note => importantFilter(note) && searchFilter(note));
+  }
+
+  drop(event: CdkDragDrop<Note[]>) {
+    moveItemInArray(this.notesToShow, event.previousIndex, event.currentIndex);
   }
 }

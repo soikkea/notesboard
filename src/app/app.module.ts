@@ -16,6 +16,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {TextFieldModule} from '@angular/cdk/text-field';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 import { AppComponent } from './app.component';
@@ -49,7 +50,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatGridListModule,
     MatCardModule,
     MatSlideToggleModule,
-    TextFieldModule
+    TextFieldModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

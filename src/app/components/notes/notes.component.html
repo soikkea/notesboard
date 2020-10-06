@@ -14,8 +14,8 @@
             <mat-slide-toggle [checked]="showAll" (toggleChange)="setShowAll(!showAll)">Show all</mat-slide-toggle>
         </div>
     </div>
-    <div>
-        <div *ngFor="let note of notesToShow">
+    <div cdkDropList (cdkDropListDropped)="drop($event)">
+        <div *ngFor="let note of notesToShow" cdkDrag>
             <app-note-detail [note]="note" (noteChanged)="update($event)" (noteDeletd)="deleteNote($event)"></app-note-detail>
         </div>
     </div>
