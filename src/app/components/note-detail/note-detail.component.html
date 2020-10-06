@@ -6,7 +6,11 @@
             </div>
             <div *ngIf="editMode">
                 <mat-form-field appearance="outline" class="full-width">
-                    <textarea matInput [(ngModel)]="note.content" rows="5"></textarea>
+                    <textarea matInput
+                        cdkTextareaAutosize
+                        cdkAutosizeMinRows="5"
+                        cdkAutosizeMaxRows="20"
+                        [(ngModel)]="note.content"></textarea>
                 </mat-form-field>
             </div>
         </mat-card-content>

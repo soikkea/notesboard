@@ -15,6 +15,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatCardModule} from '@angular/material/card';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {TextFieldModule} from '@angular/cdk/text-field';
+
 
 import { AppComponent } from './app.component';
 import { NotesComponent } from './components/notes/notes.component';
@@ -46,7 +48,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    TextFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
