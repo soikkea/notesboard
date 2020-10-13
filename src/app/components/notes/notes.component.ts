@@ -1,5 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, OnInit } from '@angular/core';
+import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Note } from '../../models/note';
 import { NoteService } from '../../services/note.service';
 
@@ -15,6 +16,9 @@ export class NotesComponent implements OnInit {
   searchString = '';
 
   constructor(private noteService: NoteService) { }
+
+  @ViewChild('newNoteContents') newNoteContents: HTMLTextAreaElement;
+  @ViewChild('newNoteTextarea') newNoteTextarea: CdkTextareaAutosize;
 
   ngOnInit(): void {
     this.getNotes();
@@ -88,5 +92,20 @@ export class NotesComponent implements OnInit {
 
   drop(event: CdkDragDrop<Note[]>) {
     moveItemInArray(this.notesToShow, event.previousIndex, event.currentIndex);
+  }
+
+  newNoteFocus(): void {
+    console.log("FOCUS!");
+    this.newNoteTextarea.minRows = 10;
+    this.newNoteTextarea.maxRows = 10;
+    this.newNoteTextarea.resizeToFitContent(true);
+  }
+
+  newNoteLoseFocus(): void {
+    console.log("LOSE FOCUS!");
+    console.log(this.newNoteContents.value);
+    this.newNoteTextarea.minRows = 1;
+    this.newNoteTextarea.maxRows = 1;
+    this.newNoteTextarea.resizeToFitContent(true);
   }
 }
