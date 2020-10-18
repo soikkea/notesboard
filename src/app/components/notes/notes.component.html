@@ -22,6 +22,7 @@
                 #newNoteTextarea="cdkTextareaAutosize"
                 rows="1"
                 [(ngModel)]="newNoteContent"
+                (keyup.control.enter)="addNote()"
                 (focus)="newNoteFocus()"
                 (blur)="newNoteLoseFocus()"></textarea>
         </mat-form-field>
