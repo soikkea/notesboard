@@ -23,6 +23,7 @@ import { AppComponent } from './app.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDividerModule } from '@angular/material/divider';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatCardModule,
     MatSlideToggleModule,
     TextFieldModule,
-    DragDropModule
+    DragDropModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
