@@ -14,10 +14,10 @@ export class NotesComponent implements OnInit {
   showAll = true;
   notesToShow: Note[];
   searchString = '';
+  newNoteContent = '';
 
   constructor(private noteService: NoteService) { }
 
-  @ViewChild('newNoteContents') newNoteContents: HTMLTextAreaElement;
   @ViewChild('newNoteTextarea') newNoteTextarea: CdkTextareaAutosize;
 
   ngOnInit(): void {
@@ -29,6 +29,15 @@ export class NotesComponent implements OnInit {
       .subscribe(notes => {
         this.updateNotes(notes);
       });
+  }
+
+  addNote(): void {
+    if (!this.newNoteContent) {
+      return;
+    }
+    this.add(this.newNoteContent);
+    this.newNoteContent = '';
+    this.minimizeNewNoteTextArea();
   }
 
   add(contents: string): void {
@@ -96,16 +105,24 @@ export class NotesComponent implements OnInit {
 
   newNoteFocus(): void {
     console.log("FOCUS!");
-    this.newNoteTextarea.minRows = 10;
-    this.newNoteTextarea.maxRows = 10;
-    this.newNoteTextarea.resizeToFitContent(true);
+    this.resizeNewNoteTextArea(10);
   }
 
   newNoteLoseFocus(): void {
     console.log("LOSE FOCUS!");
-    console.log(this.newNoteContents.value);
-    this.newNoteTextarea.minRows = 1;
-    this.newNoteTextarea.maxRows = 1;
+    if (this.newNoteContent) {
+      return;
+    }
+    this.minimizeNewNoteTextArea();
+  }
+
+  resizeNewNoteTextArea(rows: number): void {
+    this.newNoteTextarea.minRows = rows;
+    this.newNoteTextarea.maxRows = rows;
     this.newNoteTextarea.resizeToFitContent(true);
+  }
+
+  minimizeNewNoteTextArea(): void {
+    this.resizeNewNoteTextArea(1);
   }
 }

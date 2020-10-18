@@ -19,13 +19,13 @@
             <mat-label>New note:</mat-label>
             <textarea matInput
                 cdkTextareaAutosize
-                #newNoteContents
                 #newNoteTextarea="cdkTextareaAutosize"
                 rows="1"
+                [(ngModel)]="newNoteContent"
                 (focus)="newNoteFocus()"
                 (blur)="newNoteLoseFocus()"></textarea>
         </mat-form-field>
-        <button (click)="add(newNoteContents.value); newNoteContents.value=''">
+        <button mat-button (click)="addNote()">
             add
         </button>
     </div>
