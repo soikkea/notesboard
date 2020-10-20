@@ -1,5 +1,5 @@
 <div>
-    <mat-card class="note-card">
+    <mat-card  *ngIf="note" class="note-card">
         <mat-card-content>
             <div class="text-style" *ngIf="!editMode">
                 {{note.content}}
