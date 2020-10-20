@@ -104,16 +104,21 @@ export class NotesComponent implements OnInit {
   }
 
   newNoteFocus(): void {
-    console.log("FOCUS!");
-    this.resizeNewNoteTextArea(10);
+    //this.resizeNewNoteTextArea(10);
   }
 
   newNoteLoseFocus(): void {
-    console.log("LOSE FOCUS!");
     if (this.newNoteContent) {
       return;
     }
     this.minimizeNewNoteTextArea();
+  }
+
+  newNoteTextAreaChanged(): void {
+    if (!this.newNoteContent) {
+      return;
+    }
+    this.resizeNewNoteTextArea(10);
   }
 
   resizeNewNoteTextArea(rows: number): void {

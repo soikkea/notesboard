@@ -23,6 +23,7 @@
                 rows="1"
                 [(ngModel)]="newNoteContent"
                 (keyup.control.enter)="addNote()"
+                (input)="newNoteTextAreaChanged()"
                 (focus)="newNoteFocus()"
                 (blur)="newNoteLoseFocus()"></textarea>
         </mat-form-field>
