@@ -6,24 +6,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './services/in-memory-data.service';
 
-import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatIconModule} from '@angular/material/icon';
-import {MatButtonModule} from '@angular/material/button';
-import {MatListModule} from '@angular/material/list';
-import {MatGridListModule} from '@angular/material/grid-list';
-import {MatCardModule} from '@angular/material/card';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {TextFieldModule} from '@angular/cdk/text-field';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-
-
 import { AppComponent } from './app.component';
 import { NotesComponent } from './components/notes/notes.component';
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatDividerModule } from '@angular/material/divider';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
@@ -42,18 +29,7 @@ import { MatDividerModule } from '@angular/material/divider';
     ),
 
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatButtonModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule,
-    MatSlideToggleModule,
-    TextFieldModule,
-    DragDropModule,
-    MatDividerModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
