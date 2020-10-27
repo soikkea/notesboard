@@ -1,0 +1,15 @@
+<mat-form-field appearance="outline" class="full-width">
+    <mat-label>New note:</mat-label>
+    <textarea matInput
+        cdkTextareaAutosize
+        #newNoteTextarea="cdkTextareaAutosize"
+        rows="1"
+        [(ngModel)]="newNoteContent"
+        (keyup.control.enter)="addNote()"
+        (input)="newNoteTextAreaChanged()"
+        (focus)="newNoteFocus()"
+        (blur)="newNoteLoseFocus()"></textarea>
+</mat-form-field>
+<button mat-button (click)="addNote()">
+    add
+</button>

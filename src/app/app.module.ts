@@ -11,12 +11,14 @@ import { NotesComponent } from './components/notes/notes.component';
 import { NoteDetailComponent } from './components/note-detail/note-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { NewNoteFormComponent } from './components/new-note-form/new-note-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NotesComponent,
-    NoteDetailComponent
+    NoteDetailComponent,
+    NewNoteFormComponent
   ],
   imports: [
     BrowserModule,

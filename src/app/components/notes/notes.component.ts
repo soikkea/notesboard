@@ -14,11 +14,8 @@ export class NotesComponent implements OnInit {
   showAll = true;
   notesToShow: Note[];
   searchString = '';
-  newNoteContent = '';
 
   constructor(private noteService: NoteService) { }
-
-  @ViewChild('newNoteTextarea') newNoteTextarea: CdkTextareaAutosize;
 
   ngOnInit(): void {
     this.getNotes();
@@ -29,15 +26,6 @@ export class NotesComponent implements OnInit {
       .subscribe(notes => {
         this.updateNotes(notes);
       });
-  }
-
-  addNote(): void {
-    if (!this.newNoteContent) {
-      return;
-    }
-    this.add(this.newNoteContent);
-    this.newNoteContent = '';
-    this.minimizeNewNoteTextArea();
   }
 
   add(contents: string): void {
@@ -54,15 +42,15 @@ export class NotesComponent implements OnInit {
       .subscribe(note => {
         const newNotes = this.notes.concat(note);
         this.updateNotes(newNotes);
-      })
-  };
+      });
+  }
 
   update(updatedNote: Note): void {
     this.noteService.updateNote(updatedNote)
       .subscribe(_ => {
         const newNotes = this.notes.map(note => note.id !== updatedNote.id ? note : updatedNote);
         this.updateNotes(newNotes);
-      })
+      });
   }
 
   deleteNote(id: number): void {
@@ -70,7 +58,7 @@ export class NotesComponent implements OnInit {
       .subscribe(_ => {
         const notes = this.notes.filter(note => note.id !== id);
         this.updateNotes(notes);
-      })
+      });
   }
 
   setShowAll(value: boolean): void {
@@ -95,39 +83,12 @@ export class NotesComponent implements OnInit {
     const searchFilter = this.searchString ?
       (note: Note) => note.content.toLowerCase().includes(this.searchString) :
       (_: Note) => true;
-    
-      this.notesToShow = this.notes.filter(note => importantFilter(note) && searchFilter(note));
+
+    this.notesToShow = this.notes.filter(note => importantFilter(note) && searchFilter(note));
   }
 
-  drop(event: CdkDragDrop<Note[]>) {
+  drop(event: CdkDragDrop<Note[]>): void {
     moveItemInArray(this.notesToShow, event.previousIndex, event.currentIndex);
   }
 
-  newNoteFocus(): void {
-    //this.resizeNewNoteTextArea(10);
-  }
-
-  newNoteLoseFocus(): void {
-    if (this.newNoteContent) {
-      return;
-    }
-    this.minimizeNewNoteTextArea();
-  }
-
-  newNoteTextAreaChanged(): void {
-    if (!this.newNoteContent) {
-      return;
-    }
-    this.resizeNewNoteTextArea(10);
-  }
-
-  resizeNewNoteTextArea(rows: number): void {
-    this.newNoteTextarea.minRows = rows;
-    this.newNoteTextarea.maxRows = rows;
-    this.newNoteTextarea.resizeToFitContent(true);
-  }
-
-  minimizeNewNoteTextArea(): void {
-    this.resizeNewNoteTextArea(1);
-  }
 }
