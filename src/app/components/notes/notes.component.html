@@ -37,7 +37,7 @@
     </div>
     <div cdkDropList (cdkDropListDropped)="drop($event)">
         <div *ngFor="let note of notesToShow" cdkDrag>
-            <app-note-detail [note]="note" (noteChanged)="update($event)" (noteDeletd)="deleteNote($event)"></app-note-detail>
+            <app-note-detail [note]="note" (noteChanged)="update($event)" (noteDeleted)="deleteNote($event)"></app-note-detail>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ export class NoteDetailComponent implements OnInit {
 
   @Input() note: Note;
   @Output() noteChanged = new EventEmitter<Note>();
-  @Output() noteDeletd = new EventEmitter<number>();
+  @Output() noteDeleted = new EventEmitter<number>();
 
   public editMode = false;
 
@@ -25,7 +25,7 @@ export class NoteDetailComponent implements OnInit {
   }
 
   deleteNote(): void {
-    this.noteDeletd.emit(this.note.id);
+    this.noteDeleted.emit(this.note.id);
   }
 
   editNote(): void {
