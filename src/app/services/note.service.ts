@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { Note } from '../models/note';
-import { NOTES } from '../mocks/mock-notes';
 
 @Injectable({
   providedIn: 'root'
@@ -28,9 +27,12 @@ export class NoteService {
       );
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
+  private handleError<T>(operation = 'operation', result?: T): (error: any) => Observable<T> {
+    return (error) => {
       console.error(error);
+
+      this.log(`${operation} failed: ${error.message}`);
+
       return of(result as T);
     };
   }
@@ -56,7 +58,7 @@ export class NoteService {
     );
   }
 
-  private log(message: string) {
+  private log(message: string): void {
     console.log(`NoteService: ${message}`);
   }
 }
