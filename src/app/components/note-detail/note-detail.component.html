@@ -10,12 +10,15 @@
                         cdkTextareaAutosize
                         cdkAutosizeMinRows="5"
                         cdkAutosizeMaxRows="20"
+                        (keyup.control.enter)="acceptEdit()"
                         [(ngModel)]="note.content"></textarea>
                 </mat-form-field>
             </div>
         </mat-card-content>
         <mat-card-actions>
-            <button class="set-importance-button" mat-button (click)="setNoteImportance(!note.important)">
+            <button class="set-importance-button"
+                    mat-button (click)="setNoteImportance(!note.important)"
+                    matTooltip="Set as {{note.important ? 'unimportant' : 'important'}}">
                 {{note.important ? 'important' : 'unimportant'}}
             </button>
             <button mat-button (click)="deleteNote()">
