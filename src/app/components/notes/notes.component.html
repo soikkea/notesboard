@@ -19,7 +19,7 @@
     </div>
     <mat-divider></mat-divider>
     <div>
-        {{notes ? notes.length : 0}} notes in total.
+        {{notes ? notes.length : 0}} notes in total. Showing {{notesToShow ? notesToShow.length : 0}} notes.
     </div>
     <div cdkDropList (cdkDropListDropped)="drop($event)">
         <div *ngFor="let note of notesToShow" cdkDrag>
