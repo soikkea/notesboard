@@ -1,6 +1,6 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { CdkTextareaAutosize } from '@angular/cdk/text-field';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { NoteUpdate, NoteUpdateType } from 'src/app/models/note-update';
 import { Note } from '../../models/note';
 import { NoteService } from '../../services/note.service';
 
@@ -43,6 +43,19 @@ export class NotesComponent implements OnInit {
         const newNotes = this.notes.concat(note);
         this.updateNotes(newNotes);
       });
+  }
+
+  noteChanged(event: NoteUpdate): void {
+    switch (event.type) {
+      case NoteUpdateType.Update:
+        this.update(event.note);
+        break;
+      case NoteUpdateType.Delete:
+        this.deleteNote(event.note.id);
+        break;
+      default:
+        break;
+    }
   }
 
   update(updatedNote: Note): void {

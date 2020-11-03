@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Note } from 'src/app/models/note';
+import { NoteUpdate, NoteUpdateType } from 'src/app/models/note-update';
 
 @Component({
   selector: 'app-note-detail',
@@ -9,8 +10,7 @@ import { Note } from 'src/app/models/note';
 export class NoteDetailComponent implements OnInit {
 
   @Input() note: Note;
-  @Output() noteChanged = new EventEmitter<Note>();
-  @Output() noteDeleted = new EventEmitter<number>();
+  @Output() noteChanged = new EventEmitter<NoteUpdate>();
 
   public editMode = false;
 
@@ -21,11 +21,11 @@ export class NoteDetailComponent implements OnInit {
 
   setNoteImportance(value: boolean): void {
     this.note.important = value;
-    this.noteChanged.emit(this.note);
+    this.sendNoteChangedEvent(NoteUpdateType.Update);
   }
 
   deleteNote(): void {
-    this.noteDeleted.emit(this.note.id);
+    this.sendNoteChangedEvent(NoteUpdateType.Delete);
   }
 
   editNote(): void {
@@ -34,7 +34,15 @@ export class NoteDetailComponent implements OnInit {
 
   acceptEdit(): void {
     this.editMode = false;
-    this.noteChanged.emit(this.note);
+    this.sendNoteChangedEvent(NoteUpdateType.Update);
+  }
+
+  sendNoteChangedEvent(type: NoteUpdateType): void {
+    const updateEvent: NoteUpdate = {
+      type,
+      note: this.note
+    };
+    this.noteChanged.emit(updateEvent);
   }
 
 }
